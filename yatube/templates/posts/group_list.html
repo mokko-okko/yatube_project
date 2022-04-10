@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Записи сообщества  {{group_description}}{% endblock %}
+
+<a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
+
+   
+
+    {% block content %}
+    <div class = "container">     
+
+      <H1> {{group_title}}   </H1> 
+      <p> {{group_description}}   </p> 
+            {% for post in posts %}
+            <ul>
+                <li>
+                    Автор: {{ post.author.get_full_name }}
+                </li>
+                <li>
+                    Дата публикации: {{ post.pub_date|date:"d E Y" }}
+                </li>
+            </ul>
+            <p>{{ post.text }}</p>    
+              
+            
+            
+            {% if not forloop.last %}<hr>{% endif %}
+            {% endfor %} 
+          </div>
+            <!--ляляля -->
+    {% endblock %}
+
